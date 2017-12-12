@@ -1,0 +1,42 @@
+
+<style>
+
+    .banner-wrap{
+        height: 900px;
+        outline: 1px ;
+        padding: 200px 0;
+        perspective: 1000px;
+    }
+    .banner{
+        width: 500px;
+        margin: 0 auto;
+        line-height: 500px;
+        box-sizing: border-box;
+        background-color:  #37D7B2;
+        text-align: center;
+        font-size: 50px;
+        color: #fff;
+    }
+</style>-------------------------------------------------------------------------------------------<div class="banner-wrap">
+    <div class="banner">旋转的图片</div>
+</div>--------------------------------------------------------------------------------------------<script>
+    (function(){
+        var bannerWrap = document.querySelector('.banner-wrap'),
+            banner = bannerWrap.querySelector('.banner');
+        banner.addEventListener('mousemove', function(e){
+            var centerX = banner.offsetLeft + banner.offsetWidth / 2,
+                centerY = banner.offsetTop + banner.offsetHeight / 2;
+            var deltaX = e.pageX - centerX,
+                deltaY = e.pageY - centerY;
+            var percentageX = deltaX / centerX,
+                percentageY = deltaY / centerY;
+            var deg = 10;
+            this.style.transform = 'rotateX(' + percentageY * -deg + 'deg)'
++ 'rotateY(' + percentageX * deg + 'deg)';
+        });
+        banner.addEventListener('mouseleave', function(e){
+            this.style.transform = '';
+        })
+    })();
+
+</script>
